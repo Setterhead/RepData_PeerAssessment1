@@ -51,7 +51,7 @@ Use the result for making a histogram:
 
 
 ```r
-qplot(stepsPerDay, xlab="Total Number of Steps Taken Each Day", ylab = "Number of Days", binwidth=500)
+qplot(stepsPerDay, xlab="Total Number of Steps Taken Each Day", ylab = "Number of Days", binwidth=500)+theme_bw()
 ```
 
 ![plot of chunk unnamed-chunk-6](figure/unnamed-chunk-6-1.png) 
@@ -92,7 +92,8 @@ Finally use the result for making a plot:
 ```r
 ggplot(stepsPerInterval, aes(x=interval, y=steps)) +   
         geom_line(color="black", size=1) +  
-        labs(title="Average Daily Activity Pattern", x="Interval", y="Number of Steps")
+        labs(title="Average Daily Activity Pattern", x="Interval", y="Number of Steps")+
+    theme_bw()
 ```
 
 ![plot of chunk unnamed-chunk-10](figure/unnamed-chunk-10-1.png) 
@@ -146,7 +147,7 @@ newNAs <- sum(is.na(filled.data))
 
 ```r
 total.steps <- tapply(filled.data$steps, filled.data$date, FUN = sum)
-qplot(total.steps, binwidth = 1000, xlab = "Total Number of Steps per Day", ylab="Number of Days")
+qplot(total.steps, binwidth = 1000, xlab = "Total Number of Steps per Day", ylab="Number of Days")+theme_bw()
 ```
 
 ![plot of chunk unnamed-chunk-15](figure/unnamed-chunk-15-1.png) 
@@ -161,6 +162,8 @@ median <- median(total.steps)
 - Median 1.0766189 &times; 10<sup>4</sup>
 
 ## Are there differences in activity patterns between weekdays and weekends?
+
+Let's make functions that wil add one more column with Weekend/Weekday values for each observation
 
 
 ```r

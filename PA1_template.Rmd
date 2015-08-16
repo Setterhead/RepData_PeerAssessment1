@@ -45,7 +45,7 @@ stepsPerDay <- tapply(activity$steps, activity$date, sum, na.rm=TRUE)
 Use the result for making a histogram:
 
 ```{r}
-qplot(stepsPerDay, xlab="Total Number of Steps Taken Each Day", ylab = "Number of Days", binwidth=500)
+qplot(stepsPerDay, xlab="Total Number of Steps Taken Each Day", ylab = "Number of Days", binwidth=500)+theme_bw()
 ```
 
 Now let's count mean and median values of steps per day:
@@ -80,7 +80,8 @@ Finally use the result for making a plot:
 ```{r}
 ggplot(stepsPerInterval, aes(x=interval, y=steps)) +   
         geom_line(color="black", size=1) +  
-        labs(title="Average Daily Activity Pattern", x="Interval", y="Number of Steps")
+        labs(title="Average Daily Activity Pattern", x="Interval", y="Number of Steps")+
+    theme_bw()
 ```
 
 Which interval has max steps?
@@ -122,7 +123,7 @@ newNAs <- sum(is.na(filled.data))
 
 ```{r}
 total.steps <- tapply(filled.data$steps, filled.data$date, FUN = sum)
-qplot(total.steps, binwidth = 1000, xlab = "Total Number of Steps per Day", ylab="Number of Days")
+qplot(total.steps, binwidth = 1000, xlab = "Total Number of Steps per Day", ylab="Number of Days")+theme_bw()
 ```
 
 ```{r}
@@ -134,6 +135,8 @@ median <- median(total.steps)
 - Median `r median`
 
 ## Are there differences in activity patterns between weekdays and weekends?
+
+Let's make functions that wil add one more column with Weekend/Weekday values for each observation
 
 ```{r}
 weekdays_steps <- function(data) {
